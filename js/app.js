@@ -25,7 +25,7 @@ Enemy.prototype.update = function (dt) {
   }
 
   // check for collision
-  if (this.x + 101 > player.x && this.x - 101 < player.x && this.y === player.y) {
+  if (this.x + 60 > player.x && this.x - 60 < player.x && this.y === player.y) {
     player.resetPlayerPosition();
   }
 
