@@ -19,9 +19,12 @@ Enemy.prototype.update = function (dt) {
   // all computers.
   this.x += this.speed * dt;
 
-  // reset enemy position when out of frame
+  // reset enemy position when out of frame and add random speed.
   if (this.x > 600) {
     this.x = -25;
+
+    // add random speed between 100 and 500
+    this.speed = Math.floor((Math.random() * (600 - 100) + 100));
   }
 
   // check for collision
