@@ -29,8 +29,7 @@ Enemy.prototype.update = function (dt) {
 
   // check for collision
   if (this.x + 60 > player.x && this.x - 60 < player.x && this.y === player.y) {
-    swal('Try Again', 'Try not to touch an enemy', 'warning');
-    player.resetPlayerPosition();
+    resetGame()
   }
 
 };
@@ -88,7 +87,7 @@ Player.prototype.handleInput = function (input) {
       button: "Restart Game",
     }).then((value) => {
       if (value) {
-        this.resetPlayerPosition();
+        resetGame();
       }
     });
   }
@@ -104,22 +103,29 @@ Player.prototype.resetPlayerPosition = function () {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-const allEnemies = [
-  new Enemy(0, 63, 100),
-  new Enemy(0, 146, 150),
-  new Enemy(0, 229, 400)
-];
+function resetGame() {
+  allEnemies.length = 0;
+  allEnemies.push(new Enemy(0, 63, 250));
+  allEnemies.push(new Enemy(0, 146, 400));
+  allEnemies.push(new Enemy(0, 229, 200));
+  player.resetPlayerPosition();
+}
+
+const allEnemies = [];
 const player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function (e) {
-  var allowedKeys = {
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down'
-  };
+    var allowedKeys = {
+      37: 'left',
+      38: 'up',
+      39: 'right',
+      40: 'down'
+    };
 
-  player.handleInput(allowedKeys[e.keyCode]);
-});
+    player.handleInput(allowedKeys[e.keyCode]);
+  },
+
+  resetGame()
+);
