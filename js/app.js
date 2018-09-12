@@ -26,6 +26,7 @@ Enemy.prototype.update = function (dt) {
 
   // check for collision
   if (this.x + 60 > player.x && this.x - 60 < player.x && this.y === player.y) {
+    swal('Try Again', 'Try not to touch an enemy', 'warning');
     player.resetPlayerPosition();
   }
 
@@ -79,7 +80,8 @@ Player.prototype.handleInput = function (input) {
 
   // TODO: Check for winning condition
   if (this.y <= 0) {
-    console.log('won');
+    swal('Gratulation', 'You have won the game!', 'success');
+    this.resetPlayerPosition();
   }
 
 }
