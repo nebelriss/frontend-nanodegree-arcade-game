@@ -109,7 +109,7 @@ Player.prototype.resetPlayerPosition = function () {
 const allEnemies = [
   new Enemy(0, 63, 100),
   new Enemy(0, 146, 150),
-  new Enemy(0, 229, 200)
+  new Enemy(0, 229, 400)
 ];
 const player = new Player();
 
