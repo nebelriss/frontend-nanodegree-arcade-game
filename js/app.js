@@ -81,10 +81,18 @@ Player.prototype.handleInput = function (input) {
 
   console.log(`x: ${this.x}, y: ${this.y}`)
 
-  // TODO: Check for winning condition
+  // Check for winning condition. If game is won show message and reset the game.
   if (this.y <= 0) {
-    swal('Gratulation', 'You have won the game!', 'success');
-    this.resetPlayerPosition();
+    swal({
+      title: "Gratulationa!",
+      text: 'You have won the game!',
+      icon: "success",
+      button: "Restart Game",
+    }).then((value) => {
+      if (value) {
+        this.resetPlayerPosition();
+      }
+    });
   }
 
 }
