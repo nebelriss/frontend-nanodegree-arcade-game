@@ -79,8 +79,6 @@ Player.prototype.handleInput = function (input) {
       break;
   }
 
-  console.log(`x: ${this.x}, y: ${this.y}`)
-
   // Check for winning condition. If game is won show message and reset the game.
   if (this.y <= 0) {
     swal({
