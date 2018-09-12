@@ -43,6 +43,7 @@ Enemy.prototype.render = function () {
 // This class requires an update(), render() and
 // a handleInput() method.
 let Player = function () {
+  this.playerCanMove = true;
   this.resetPlayerPosition();
   this.sprite = 'images/char-boy.png';
 }
@@ -55,31 +56,34 @@ Player.prototype.render = function () {
 
 Player.prototype.handleInput = function (input) {
 
-  switch (input) {
-    case "left":
-      if (this.x > 0) {
-        this.x -= 101;
-      }
-      break;
-    case "right":
-      if (this.x < 404) {
-        this.x += 101;
-      }
-      break;
-    case "up":
-      if (this.y > -20) {
-        this.y -= 83;
-      }
-      break;
-    case "down":
-      if (this.y < 373.5) {
-        this.y += 83;
-      }
-      break;
+  if (this.playerCanMove) {
+    switch (input) {
+      case "left":
+        if (this.x > 0) {
+          this.x -= 101;
+        }
+        break;
+      case "right":
+        if (this.x < 404) {
+          this.x += 101;
+        }
+        break;
+      case "up":
+        if (this.y > -20) {
+          this.y -= 83;
+        }
+        break;
+      case "down":
+        if (this.y < 373.5) {
+          this.y += 83;
+        }
+        break;
+    }
   }
 
   // Check for winning condition. If game is won show message and reset the game.
   if (this.y <= 0) {
+    this.lockPlayerMovement();
     swal({
       title: "Gratulationa!",
       text: 'You have won the game!',
@@ -88,6 +92,7 @@ Player.prototype.handleInput = function (input) {
     }).then((value) => {
       if (value) {
         resetGame();
+        this.unlockPlayerMovement();
       }
     });
   }
@@ -97,6 +102,14 @@ Player.prototype.handleInput = function (input) {
 Player.prototype.resetPlayerPosition = function () {
   this.x = 404;
   this.y = 395;
+}
+
+Player.prototype.lockPlayerMovement = function () {
+  this.playerCanMove = false;
+}
+
+Player.prototype.unlockPlayerMovement = function () {
+  this.playerCanMove = true;
 }
 
 // Now instantiate your objects.
