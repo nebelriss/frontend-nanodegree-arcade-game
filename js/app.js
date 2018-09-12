@@ -24,11 +24,10 @@ Enemy.prototype.update = function (dt) {
     this.x = -25;
   }
 
-  // TODO: check for collision
+  // check for collision
   if (this.x + 101 > player.x && this.x - 101 < player.x && this.y === player.y) {
     player.resetPlayerPosition();
   }
-
 
 };
 
@@ -42,19 +41,17 @@ Enemy.prototype.render = function () {
 // a handleInput() method.
 let Player = function () {
   this.resetPlayerPosition();
-  this.sprite = 'images/char-boy.png'
-
+  this.sprite = 'images/char-boy.png';
 }
 
-Player.prototype.update = function (dt) {
-}
+Player.prototype.update = function (dt) {}
 
 Player.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
 }
 
 Player.prototype.handleInput = function (input) {
-  // FIXME: precise movement
+
   switch (input) {
     case "left":
       if (this.x > 0) {
@@ -63,18 +60,18 @@ Player.prototype.handleInput = function (input) {
       break;
     case "right":
       if (this.x < 404) {
-          this.x += 101;
-        }
+        this.x += 101;
+      }
       break;
     case "up":
       if (this.y > -41.5) {
-          this.y -= 83;
-        }
+        this.y -= 83;
+      }
       break;
     case "down":
       if (this.y < 373.5) {
-          this.y += 83;
-        }
+        this.y += 83;
+      }
       break;
   }
 
@@ -95,11 +92,13 @@ Player.prototype.resetPlayerPosition = function () {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemy = new Enemy(0, 63, 100);
-const enemy2 = new Enemy(0, 146, 150);
-const enemy3 = new Enemy(0, 229, 200);
-const allEnemies = [enemy, enemy2, enemy3];
-let player = new Player();
+
+const allEnemies = [
+  new Enemy(0, 63, 100),
+  new Enemy(0, 146, 150),
+  new Enemy(0, 229, 200)
+];
+const player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
